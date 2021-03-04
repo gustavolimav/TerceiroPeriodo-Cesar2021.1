@@ -1,0 +1,24 @@
+callback.c -- callback.o
+fun.c -- fun.o
+fun.h
+
+
+gcc -c callback.c --> callback.o
+gcc -c fun.c --> fun.o
+
+gcc -o cb callback.o fun.o
+
+CC = gcc-10
+objects = callback.o fun.o
+cb: $(objects)
+	$(CC) -o cb $(objects)
+
+callback.o: fun.h
+		$(CC) -c callback.c
+fun.o:
+		$(CC) -c fun.h
+
+clean:
+		rm &(objects) cb
+
+#use make to compile in terminator
