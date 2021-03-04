@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 #include <stdio.h>
+#include <time.h> //clock() e clock_t
 
 int verificar_tamanho(const char arr[]) // tamanho do arquivo = quantidade de elementos ("\0") que existem ate chegar no final
 {
@@ -62,6 +63,9 @@ int main(int argc, char *argv[])
 {   
     int lines1, coluns1, lines2, coluns2;
 	FILE *fp;
+    clock_t time;
+
+    clock(); // tempo inicial
 
 	fp = fopen(argv[1], "r"); // abre o arquivo em modo leitura
 	lines1 = linhas(fp); // conta as linhas
@@ -79,7 +83,7 @@ int main(int argc, char *argv[])
 	}
 
     fp = fopen(argv[2], "r");
-	lines2 = linhas(fp);!feof
+	lines2 = linhas(fp);
 	fseek(fp, 0, SEEK_SET);
 	coluns2 = colunas(fp);
 	fseek(fp, 0, SEEK_SET);
@@ -119,6 +123,8 @@ int main(int argc, char *argv[])
 
     if(final == 1) { // se der erro no multiplicar matrix ele imprime mensagem de erro
         printf("Error: not possible to mult these matrixs");
+        time = clock(); // tempo final - inicial
+        printf("Tempo de execucao: %lfms", ((double)time)/((CLOCKS_PER_SEC/1000))); //conversao para milisegundos
         return 0;
     }
 
@@ -128,5 +134,7 @@ int main(int argc, char *argv[])
 		}
         printf("\n");
 	}
+    time = clock(); // tempo final - inicial
+    printf("Tempo de execucao: %lfms", ((double)time)/((CLOCKS_PER_SEC/1000))); //conversao para milisegundos
 	return 0;
 }
