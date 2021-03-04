@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-#include <stdio.h>
-#include <time.h> //clock() e clock_t
+#include "fun.h"
 
 int verificar_tamanho(const char arr[]) // tamanho do arquivo = quantidade de elementos ("\0") que existem ate chegar no final
 {
