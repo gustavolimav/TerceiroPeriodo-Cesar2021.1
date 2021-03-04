@@ -38,14 +38,14 @@ int colunas(FILE *fp)
 	}
 }
 
-int multiplicar_matrizes(int fst1[][MAX], int lines1, int coluns1,
-                        int fst2[][MAX], int lines2, int coluns2,
-                        int fst3[][MAX], int lines3, int coluns3)
+int multiplicar_matrizes(int lines1, int coluns1, int fst1[lines1][coluns1],
+                        int lines2, int coluns2, int fst2[lines2][coluns2],
+                        int fst3[lines1][coluns2])
 {  
     // Se a quantidade de colunas da primeira matrix for diferente da qunatidade
     // de linhas da segunda matrix não pode ocorrer multiplicação. Se a quantidade
     // de linhas da primeira matrix for diferente da quantidade da matrix resultante
-    if (coluns1 != lines2 || lines1 != lines3 || coluns2 != coluns3) return 1; 
+    if (coluns1 != lines2) return 1; 
 
     int a = lines1, b = coluns1, c = coluns2;
 
@@ -113,9 +113,9 @@ int main(int argc, char *argv[])
 
     int fst3[lines1][coluns2];
 
-    int final = multiplicar_matrizes(fst[lines1][coluns1], lines1, coluns1,
-                                    fst2[lines2][coluns2], lines2, coluns2,
-                                    fst3[lines1][coluns2], lines1, coluns2);
+    int final = multiplicar_matrizes(lines1, coluns1, fst,
+                                    lines2, coluns2, fst2,
+                      		    fst3);
 
     printf("\n");
 
