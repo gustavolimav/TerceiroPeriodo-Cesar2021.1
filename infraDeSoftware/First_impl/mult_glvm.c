@@ -1,6 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0
 #include "fun.h"
 
+/* int contar(char arr[])
+{
+	char d, c[200];
+	int i = 0, characters = 0;
+	FILE *fp;
+
+	fp = fopen(arr,"r");
+
+	while((d = getc(fp)) != EOF){
+		c[i]=d;
+		if(c[i] != ' ' && c[i] != '\n') characters++;
+		++i;
+	}
+	if (characters % 2 != 0 && characters != 1) return 1; // Gustavo, voce tem que verificar linha a linha e guardar a qunatidade de numeros, se tiver \n vai pra a proxima e verifica se a quantidade é igual
+	else return 0;
+} */
+
 int verificar_tamanho(const char arr[]) // tamanho do arquivo = quantidade de elementos ("\0") que existem ate chegar no final
 {
 	int i = 0;
@@ -63,7 +80,10 @@ int main(int argc, char *argv[])
     int lines1, coluns1, lines2, coluns2;
 	FILE *fp;
     clock_t time;
-
+	
+	/* int valido = contar(argv[1]);
+	printf("%d\n", valido);
+	if(valido == 1) return 1; */
     clock(); // tempo inicial
 
 	fp = fopen(argv[1], "r"); // abre o arquivo em modo leitura
@@ -121,9 +141,8 @@ int main(int argc, char *argv[])
     printf("\n");
 
     if(final == 1) { // se der erro no multiplicar matrix ele imprime mensagem de erro
-        printf("Error: not possible to mult these matrixs");
-        time = clock(); // tempo final - inicial
-        printf("Tempo de execucao: %lfms", ((double)time)/((CLOCKS_PER_SEC/1000))); //conversao para milisegundos
+        printf("Error: not possible to mult these matrixs \n");
+		fclose(fp);
         return 0;
     }
 
@@ -135,5 +154,6 @@ int main(int argc, char *argv[])
 	}
     time = clock(); // tempo final - inicial
     printf("Tempo de execucao: %lfms", ((double)time)/((CLOCKS_PER_SEC/1000))); //conversao para milisegundos
+	fclose(fp);
 	return 0;
 }
