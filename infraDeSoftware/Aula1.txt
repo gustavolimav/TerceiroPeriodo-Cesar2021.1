@@ -1,0 +1,50 @@
+O que é SO?
+
+* Não há um consenso
+* Intermediário, ambiente, software.
+* Cordenador (bottom-up)
+    * Administra recursos do hardware de forma otimizada
+    * Resolve conflitos
+    * preine erros ou uso não autorizado
+* Facilitador (top-down)
+    * Interface de acesso a bibliotecas, sistemas de arquivos
+    * Proteção
+    * /Compartilhamento/Comunicação entre aplicações
+* Abstração/Arbitração
+
+-------------------------------------Contexto de Execução----------------------------------------
+Usuário (bit 1) | Processo -> Chamada do sistema ->V                    ^ -> Retorno
+Kerneç (bit 0)  |                                   Execução da chamada
+                | Código -> CPU -> Placa gráfica -> Monitor
+-------------------------------------------------------------------------------------------------
+
+Tipos de SO
+
+* Mainframe
+    * Capacidade de processamento
+    * Dedicados
+* Servidor
+    * Centralizador para dados e programas
+* Multiprocessadores
+* Computadores pessoais
+* Sistemas embarcados
+
+Características
+
++ Eficiente
++ Robusto
++ Disponível
++ Escalonável
++ Extensível
++ Portável
++ Seguro
++ Interativo
++ Útil
+
+Camadas facilitam deixar o SO mais seguro
+
+Aula2-
+Stalling, 9 ed .: capítulo capítulo 3
+Silberschatz, 1o ed.: capitulo 3 (até 3.7)
+Tanembaum, 3a ed.: Secções 2.1
+Deitel, 3a ed.: Capitulo 3
