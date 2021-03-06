@@ -2,89 +2,89 @@
 #include "fun.h"
 
 int main(int argc, char *argv[])
-{   
-    int lines1, coluns1, lines2, coluns2;
+{
+	int lines1, coluns1, lines2, coluns2;
 	FILE *fp, *out;
-    clock_t time;
+	clock_t time;
 
-    clock(); 								// tempo inicial
+	clock();
 
-	fp = fopen(argv[1], "r"); 				// abre o arquivo um em modo leitura
-	if(fp == NULL) {
- 	 	printf("Error: First file does not exist \n"); // verifica se arquivo um existe
-  		return 1;
- 	}
-	lines1 = linhas(fp); 					// conta as linhas
-	fseek(fp, 0, SEEK_SET); 				// coloca o seek no inicio do arquivo novamente
-	coluns1 = colunas(fp); 					// conta colunas
+	fp = fopen(argv[1], "r");
+	if (!fp) {
+		printf("Error: First file does not exist\n");
+		return 1;
+	}
+	lines1 = linhas(fp);
+	fseek(fp, 0, SEEK_SET);
+	coluns1 = colunas(fp);
 	fseek(fp, 0, SEEK_SET);
 
-	if(coluns1 == -1) { 					// se a quantida de colunas for incoerente o programa finaliza
-		printf("Error: First matrix is invalid \n");
+	if (coluns1 == -1) {
+		printf("Error: First matrix is invalid\n");
 		fclose(fp);
 		return 1;
 	}
 
-    int fst[lines1][coluns1]; // inicializa primeira matrix
+	int fst[lines1][coluns1];
 
-    while (!feof(fp)) {  					// enquanto não chegar o final do arquivo
+	while (!feof(fp)) {
 		for (int a = 0; a < lines1; a++) {
 			for (int b = 0; b < coluns1; b++)
-				fscanf(fp, "%d", &fst[a][b]); //guarda matrix1
+				fscanf(fp, "%d", &fst[a][b]);
 		}
 	}
-
-    fp = fopen(argv[2], "r");				// abre o arquivo dois em modo leitura
-	if(fp == NULL) {
- 	 	printf("Error: Second file does not exist \n"); // verifica se arquivo dois existe
-  		return 1;
- 	}
-	lines2 = linhas(fp);					// conta as linhas
-	fseek(fp, 0, SEEK_SET);					// coloca o seek no inicio do arquivo novamente
-	coluns2 = colunas(fp);					// conta colunas
+	fclose(fp);
+	fp = fopen(argv[2], "r");
+	if (!fp) {
+		printf("Error: Second file does not exist\n");
+		return 1;
+	}
+	lines2 = linhas(fp);
+	fseek(fp, 0, SEEK_SET);
+	coluns2 = colunas(fp);
 	fseek(fp, 0, SEEK_SET);
 
-	if(coluns2 == -1) { 					// se a quantida de colunas for incoerente o programa finaliza
-		printf("Error: Second matrix is invalid \n");
+	if (coluns2 == -1) {
+		printf("Error: Second matrix is invalid\n");
 		fclose(fp);
 		return 1;
 	}
-	printf("colons1: %d, lines2: %d lines1 %d\n", coluns1, lines2, lines1);
-    int fst2[lines2][coluns2]; // inicializa segunda matrix
 
-    while (!feof(fp)) {
+	int fst2[lines2][coluns2];
+
+	while (!feof(fp)) {
 		for (int a = 0; a < lines2; a++) {
 			for (int b = 0; b < coluns2; b++)
-				fscanf(fp, "%d", &fst2[a][b]); // guarda segunda matrix
+				fscanf(fp, "%d", &fst2[a][b]);
 		}
 	}
-    int fst3[lines1][coluns2]; // inicializa terceira matrix
 
-    int final = multiplicar_matrizes(lines1, coluns1, fst, // multiplica as matrixs
-                                    lines2, coluns2, fst2,
-                      		        fst3);
+	int fst3[lines1][coluns2];
 
-    printf("\n");
+	int final = multiplicar_matrizes(lines1,
+	coluns1, fst, lines2, coluns2, fst2, fst3);
 
-    if(final == 1) { 						// se der erro no multiplicar matrix ele imprime mensagem de erro
-        printf("Error: not possible to mult these matrixs \n"); 
+	printf("\n");
+
+	if (final == 1) {
+		printf("Error: not possible to mult these matrixs\n");
 		fclose(fp);
-        return 0;
-    }
+		return 0;
+	}
 
-    time = clock(); // tempo final - inicial
+	time = clock();
 
-	out = fopen("mult_glvm.out", "w"); // criação de arquivo de saída
+	out = fopen("mult_glvm.out", "w");
 	char cbarra_n = '\n';
 
 	for (int a = 0; a < lines1; a++) {
-		for (int b = 0; b < coluns2; b++) {
-			fprintf(out, "%d ", fst3[a][b]); // escrever no arquivo
-		}
+		for (int b = 0; b < coluns2; b++)
+			fprintf(out, "%d ", fst3[a][b]);
 		fprintf(out, "%s", "\n");
 	}
-	fprintf(out, "%s %lf%s", "Tempo de execução: ", ((double)time)/((CLOCKS_PER_SEC/1000)), "ms");
-	fclose(out); // fechar arquivos
+	fprintf(out, "%s %lf%s", "Tempo de execução: "
+	, ((double)time) / ((CLOCKS_PER_SEC / 1000)), "ms");
+	fclose(out);
 	fclose(fp);
-	return 0; //finalizar programa
+	return 0;
 }

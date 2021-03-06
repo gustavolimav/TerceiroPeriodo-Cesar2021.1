@@ -13,4 +13,3 @@ clean:
 
 cleanAll:
 	rm $(objects) $(out) mult
-#use make to compile in terminator

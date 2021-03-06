@@ -1,0 +1,1 @@
+checkpatch.pl --no-tree --strict --root=. --file q1_longin.c
