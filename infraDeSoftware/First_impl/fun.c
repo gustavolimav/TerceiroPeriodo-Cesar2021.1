@@ -57,7 +57,7 @@ int colunas(FILE *fp)
 int multiplicar_matrizes(int lines1, int coluns1,
 			 int fst1[lines1][coluns1], int lines2,
 			 int coluns2, int fst2[lines2][coluns2],
-			 int fst3[lines1][coluns2]);
+			 int fst3[lines1][coluns2])
 {
 	if (coluns1 != lines2)
 		return 1;
