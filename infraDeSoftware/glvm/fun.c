@@ -18,7 +18,9 @@ int linhas(FILE *fp)
 
 	fread(&text, sizeof(char), 90000, fp);
 
-	for (i = 0; i < verificar_tamanho(text); i++) {
+	tamanho = verificar_tamanho(text);
+
+	for (i = 0; i < tamanho; i++) {
 		if (text[i] == '\n')
 			liness++;
 	}
@@ -33,6 +35,9 @@ int colunas(FILE *fp)
 	fread(&text, sizeof(char), 90000, fp);
 
 	tamanho = verificar_tamanho(text);
+
+	if (tamanho == 1)
+		return 1;
 
 	for (i = 0; i < tamanho; i++) {
 		if (text[i] == '\n') {
@@ -59,15 +64,15 @@ int multiplicar_matrizes(int lines1, int coluns1,
 			 int coluns2, int fst2[lines2][coluns2],
 			 int fst3[lines1][coluns2])
 {
+	int line1 = lines1, colun1 = coluns1, colun2 = coluns2;
+
 	if (coluns1 != lines2)
 		return 1;
 
-	int a = lines1, b = coluns1, c = coluns2;
-
-	for (int i = 0; i < a; i++) {
-		for (int k = 0; k < c; k++) {
+	for (int i = 0; i < line1; i++) {
+		for (int k = 0; k < colun1; k++) {
 			fst3[i][k] = 0;
-			for (int j = 0; j < b; j++)
+			for (int j = 0; j < colun2; j++)
 				fst3[i][k] += fst1[i][j] * fst2[j][k];
 		}
 	}
