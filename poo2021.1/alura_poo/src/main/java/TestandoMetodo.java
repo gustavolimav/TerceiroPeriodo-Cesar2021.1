@@ -22,5 +22,8 @@ public class TestandoMetodo {
 
         System.out.println(contaDaMarcela.balance);
         System.out.println(contaDoPaulo.balance);
+
+        contaDoPaulo.holder = "paulo silveira";
+        System.out.println(contaDoPaulo.holder);
     }
 }
