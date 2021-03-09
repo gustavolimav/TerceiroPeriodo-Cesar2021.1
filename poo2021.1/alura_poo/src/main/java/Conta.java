@@ -1,9 +1,9 @@
 public class Conta {
     // Four attributes
-    double balance;
-    int agency;
-    int number;
-    String holder;
+    private double balance;
+    private int agency;
+    private int number;
+    private Cliente holder;
 
     // Method
     public void deposit(double value) {
@@ -27,5 +27,29 @@ public class Conta {
         }
         return false;
     }   
+
+    public double getbalance() {
+        return this.balance;        
+    }
+
+    public int getNumber() {
+        return this.number;
+    }
+
+    public void setNumber(int newNumber) {
+        this.number = newNumber;
+    }
+
+    public int getAgency() {
+        return this.agency;
+    }
+
+    public void setHolder(Cliente holder) {
+        this.holder = holder;
+    }
+
+    public Cliente getHolder() {
+        return holder;
+    }
 
 }
