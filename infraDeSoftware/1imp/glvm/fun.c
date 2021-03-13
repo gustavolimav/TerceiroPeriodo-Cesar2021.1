@@ -58,23 +58,3 @@ int colunas(FILE *fp)
 		return -1;
 	return colunas;
 }
-
-int multiplicar_matrizes(int lines1, int coluns1,
-			 int fst1[lines1][coluns1], int lines2,
-			 int coluns2, int fst2[lines2][coluns2],
-			 int fst3[lines1][coluns2])
-{
-	int line1 = lines1, colun1 = coluns1, colun2 = coluns2;
-
-	if (coluns1 != lines2)
-		return 1;
-
-	for (int i = 0; i < line1; i++) {
-		for (int k = 0; k < colun1; k++) {
-			fst3[i][k] = 0;
-			for (int j = 0; j < colun2; j++)
-				fst3[i][k] += fst1[i][j] * fst2[j][k];
-		}
-	}
-	return 0;
-}
