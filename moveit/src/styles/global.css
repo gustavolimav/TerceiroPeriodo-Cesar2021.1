@@ -56,7 +56,6 @@ a {
 
     display: flex;
     flex-direction: column;
-
 }
 
 .experience-bar {
@@ -64,11 +63,11 @@ a {
     align-items: center;
 }
 
-.experience-bar {
+.experience-bar span {
     font-size: 1rem;
 }
 
-.experience-bar {
+.experience-bar > div {
     flex: 1;
     height: 4px;
     border-radius: 4px;
