@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: GPL-3.0
 #include "fun.h"
 
 int main(int argc, char *argv[])
@@ -58,36 +57,17 @@ int main(int argc, char *argv[])
 				fscanf(fp, "%d", &fst2[a][b]);
 		}
 	}
-	// Final of the Scan of the matrixs
-	int lines3 = lines1 * lines2;
+
+    int lines3 = lines1 * lines2;
 	int coluns3 = coluns1  * coluns2;
 	int fst3[lines3][coluns3];
 
-	out = fopen("tensor_glvm.out", "w");
-
-	for (int i = 0; i < lines1; i++) { 
-  
-        for (int k = 0; k < lines2; k++) { 
-  
-            for (int j = 0; j < coluns1; j++) { 
-  
-                for (int l = 0; l < coluns2; l++) { 
-  
-                    fst3[i + l][j + k] = fst[i][j] * fst2[k][l];
-					fprintf(out, "%d\t", fst3[i + l][j + k]); 
-                } 
-            }
-			fprintf(out, "\n");
-        } 
-    } 
-
-	printf("\n");
-
-	time = clock();
-
-	fprintf(out, "%s %lf%s", "Tempo de execução: "
-	, ((double)time) / ((CLOCKS_PER_SEC / 1000)), "ms");
-	fclose(out);
-	fclose(fp);
-	return 0;
+    kron(lines1, coluns1, fst,
+        lines2, coluns2, fst2,
+        lines3, coluns3, fst3);
+    
+    printArray(lines3, coluns3, fst3);
+    return 0;
 }
+
+    

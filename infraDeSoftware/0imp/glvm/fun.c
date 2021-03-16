@@ -59,34 +59,22 @@ int colunas(FILE *fp)
 	return colunas;
 }
 
-void kron(int lines1, int coluns1, int fst1[lines1][coluns1],
-          int lines2, int coluns2, int fst2[lines2][coluns2], 
-          int lines3, int coluns3,int fst3[lines3][coluns3]){
-    
-    int col, row;
+int multiplicar_matrizes(int lines1, int coluns1,
+			 int fst1[lines1][coluns1], int lines2,
+			 int coluns2, int fst2[lines2][coluns2],
+			 int fst3[lines1][coluns2])
+{
+	int line1 = lines1, colun1 = coluns1, colun2 = coluns2;
 
-    for(int i = 0; i < lines1; i++) {
-        for(int j = 0; j < coluns1; j++) {
-            row = i * lines2;
-            for(int k = 0; k < lines2; k++) {
-                col = j * coluns2;
-                for(int l = 0; l < coluns2; l++) {
-                    fst3[row][col] = fst1[i][j] * fst2[k][l];
-                    col+=1;
-                }
-                row+=1;
-            }
-        }
-    }
-}
+	if (coluns1 != lines2)
+		return 1;
 
-void printArray(int lines, int coluns, int fstx[lines][coluns]){
-
-    for(int i = 0; i < lines; i++) {
-        printf("%d ", fstx[i][0]);
-        for(int j = 1; j < coluns; j++)
-            printf("%d ", fstx[i][j]);
-        if(i != lines - 1)
-            printf("\n");
-    }
+	for (int i = 0; i < line1; i++) {
+		for (int k = 0; k < colun1; k++) {
+			fst3[i][k] = 0;
+			for (int j = 0; j < colun2; j++)
+				fst3[i][k] += fst1[i][j] * fst2[j][k];
+		}
+	}
+	return 0;
 }

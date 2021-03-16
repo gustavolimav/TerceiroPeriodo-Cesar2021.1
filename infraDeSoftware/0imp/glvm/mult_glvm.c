@@ -58,33 +58,30 @@ int main(int argc, char *argv[])
 				fscanf(fp, "%d", &fst2[a][b]);
 		}
 	}
-	// Final of the Scan of the matrixs
-	int lines3 = lines1 * lines2;
-	int coluns3 = coluns1  * coluns2;
-	int fst3[lines3][coluns3];
 
-	out = fopen("tensor_glvm.out", "w");
+	int fst3[lines1][coluns2];
 
-	for (int i = 0; i < lines1; i++) { 
-  
-        for (int k = 0; k < lines2; k++) { 
-  
-            for (int j = 0; j < coluns1; j++) { 
-  
-                for (int l = 0; l < coluns2; l++) { 
-  
-                    fst3[i + l][j + k] = fst[i][j] * fst2[k][l];
-					fprintf(out, "%d\t", fst3[i + l][j + k]); 
-                } 
-            }
-			fprintf(out, "\n");
-        } 
-    } 
+	int final = multiplicar_matrizes(lines1,
+	coluns1, fst, lines2, coluns2, fst2, fst3);
 
 	printf("\n");
 
+	if (final == 1) {
+		printf("Error: not possible to mult these matrixs\n");
+		fclose(fp);
+		return 0;
+	}
+
 	time = clock();
 
+	out = fopen("mult_glvm.out", "w");
+	char cbarra_n = '\n';
+
+	for (int a = 0; a < lines1; a++) {
+		for (int b = 0; b < coluns2; b++)
+			fprintf(out, "%d ", fst3[a][b]);
+		fprintf(out, "%s", "\n");
+	}
 	fprintf(out, "%s %lf%s", "Tempo de execução: "
 	, ((double)time) / ((CLOCKS_PER_SEC / 1000)), "ms");
 	fclose(out);

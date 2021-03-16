@@ -1,6 +1,6 @@
 CC = gcc
-objects = tensor_glvm.o fun.o
-out = tensor_glvm.out
+objects = tensorial.o fun.o
+out = tensoriral.out
 mult: $(objects)
 	$(CC) -o tensor $(objects)
 
