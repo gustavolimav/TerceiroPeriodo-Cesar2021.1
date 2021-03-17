@@ -62,11 +62,25 @@ int main(int argc, char *argv[])
 	int coluns3 = coluns1  * coluns2;
 	int fst3[lines3][coluns3];
 
-    kron(lines1, coluns1, fst,
-        lines2, coluns2, fst2,
-        lines3, coluns3, fst3);
-    
-    printArray(lines3, coluns3, fst3);
+	int quadrantes = lines1 * coluns1;
+	int quant_elem = lines2 * coluns2;
+	int i, pid;
+
+	for (i = 0; i < quadrantes; i++) {
+		pid = fork();
+		if (pid != 0) { //se sou o processo filho: saio do ciclo!
+            for (int j = 0; j < lines2; j++) {
+				for (int k = 0; j < coluns2; k++) {
+					fst3[i * lines2 + j][i * coluns2 + k] = 99;
+				}
+			}
+			break;
+        }
+
+	}
+    printf("I am : (i=%d),(pid=%d) mypid=%d\n",i, pid, getpid());
+    wait(NULL);
+	printArray(lines3, coluns3, fst3);
     return 0;
 }
 

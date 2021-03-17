@@ -5,6 +5,8 @@
 	#include <stdio.h>
 	#include <time.h>
 	#include <stdlib.h>
+	#include <unistd.h>
+	#include <wait.h>
 
 	int verificar_tamanho(const char arr[]);
 	int linhas(FILE *fp);
