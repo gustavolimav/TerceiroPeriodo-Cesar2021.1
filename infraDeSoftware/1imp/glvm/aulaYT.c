@@ -56,36 +56,37 @@ int main(int argc, char const *argv[])
 				fscanf(fp, "%d", &fst2[a][b]);
 		}
 	}
-    char n[10] = "um";
-    int pid = fork();
-    int filho = 1;
+    // char n[10] = "um";
+    // int pid = fork();
+    // int filho = 1;
+	
     
-    if (pid != 0) {
-        strcpy(n, "dois");
-        pid = fork();
-        filho = 2;
-    }
-    if (pid != 0) {
-        strcpy(n, "tres");
-        pid = fork();
-        filho = 3;
-    }
-    if (pid != 0) {
-        strcpy(n, "quatro");
-        pid = fork();
-        filho = 4;
-    }
+    // if (pid != 0) {
+    //     strcpy(n, "dois");
+    //     pid = fork();
+    //     filho = 2;
+    // }
+    // if (pid != 0) {
+    //     strcpy(n, "tres");
+    //     pid = fork();
+    //     filho = 3;
+    // }
+    // if (pid != 0) {
+    //     strcpy(n, "quatro");
+    //     pid = fork();
+    //     filho = 4;
+    // }
 
-    if (pid == 0) {
-        char str[10] = "test";
-        strcat(str, n);
+    // if (pid == 0) {
+    //     char str[10] = "test";
+    //     strcat(str, n);
 
-        out = fopen(str, "w");
-        char cbarra_n = '\n';
+        // out = fopen(str, "w");
+        // char cbarra_n = '\n';
         
-        int fst3[lines2][coluns2];
+        // int fst3[lines2][coluns2];
        
-        forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, fst3, filho);
+        // forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, fst3, filho);
         
         // for (int a = 0; a < lines1; a++) {
 		//     for (int b = 0; b < coluns2; b++)
@@ -93,8 +94,26 @@ int main(int argc, char const *argv[])
 		//     fprintf(out, "%s", "\n");
 	    // }
 
-        fclose(out);
-    }
+        // fclose(out);
+    // }
+	int pid = 1;
+	int n = 0;
+
+	for(int k=0;k<4;k++){
+		if (pid != 0)
+			n+=1;
+			printf("%d\n", n);
+			pid = fork();
+		if(pid == 0) {
+			out = fopen("ts", "w");
+        	char cbarra_n = '\n';
+
+			forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, fst3, n);
+
+			exit(0);
+		}
+		wait(NULL);	
+	}
     return 0;
 }
 

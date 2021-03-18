@@ -84,41 +84,28 @@ void forkeado(int lines1, int coluns1, int fst1[lines1][coluns1],
           	  int lines2, int coluns2, int fst2[lines2][coluns2], 
     		  int fst3[lines2][coluns2], int filho)
 			  {
-	int col, row, l, c, n = 0;
+	int col, row;
 	int  quant = (lines1*coluns1) % 4, quant1 = (lines1*coluns1)/4;
-
-	if (quant == 0) {
-		n++;
-		while (quant1 != 1) {
-			quant1 = quant1/4;
-			n++;
-			if (quant1 == 0)
-				break;
-		}
-	} else {
-		while (quant > 4) {
-			quant = quant%4;
-			n++;
-		}
-	}
-	if (quant == 1 && filho == 1)
-		n++;
-		
-	else if (quant == 2 && filho == 1)
-		n++;
-		
-	else if (quant == 3 && filho != 4)
-		n++;
 	
-	printf("quantidade de quadrantes para o filho %d: %d\n", filho, n);
-	// for(int l2 = 0; l2 < lines2; l2++) {
-	// 	col = c * coluns2;
-	// 	for(int c2 = 0; c2 < coluns2; c2++) {
-	// 		fst3[row][col] = fst1[l][c] * fst2[l2][c2];
-	// 		col+=1;
-	// 	}
-	// 	row+=1;	
-	// }
+	if (filho == 1)
+		int c = 0, l = 0;
+	else if (filho == 2)
+		int c = 1, l = 0;
+	else if (filho == 3)
+		int c = 0, l = 1;
+	else
+		int c = 1, l = 1;
+		
+    row = l * lines2;
+    for(int l2 = 0; l2 < lines2; l2++) {
+        col = c * coluns2;
+        for(int c2 = 0; c2 < coluns2; c2++) {
+            fst3[row][col] = fst1[l][c] * fst2[l2][c2];
+            col+=1;
+        }
+        row+=1;
+    }
+	
 	return;
 	
 }
