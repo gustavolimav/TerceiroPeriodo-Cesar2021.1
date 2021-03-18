@@ -1,7 +1,6 @@
-package genero;
+package netflix.genero;
 
-
-public Class Genero {
+public class Genero {
     public String name;
     public boolean maioridade;
 
