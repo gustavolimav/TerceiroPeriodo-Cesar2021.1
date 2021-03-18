@@ -1,12 +1,11 @@
 #include "fun.h"
 
-int main(int argc, char *argv[])
-{
-	int lines1, coluns1, lines2, coluns2;
+
+int main(int argc, char const *argv[])
+{   
+    int lines1, coluns1, lines2, coluns2;
 	FILE *fp, *out;
 	clock_t time;
-
-	clock();
 
 	fp = fopen(argv[1], "r");
 	if (!fp) {
@@ -57,25 +56,45 @@ int main(int argc, char *argv[])
 				fscanf(fp, "%d", &fst2[a][b]);
 		}
 	}
+    char n[10] = "um";
+    int pid = fork();
+    int filho = 1;
+    
+    if (pid != 0) {
+        strcpy(n, "dois");
+        pid = fork();
+        filho = 2;
+    }
+    if (pid != 0) {
+        strcpy(n, "tres");
+        pid = fork();
+        filho = 3;
+    }
+    if (pid != 0) {
+        strcpy(n, "quatro");
+        pid = fork();
+        filho = 4;
+    }
 
-    int lines3 = lines1 * lines2;
-	int coluns3 = coluns1  * coluns2;
-	int fst3[lines3][coluns3];
+    if (pid == 0) {
+        char str[10] = "test";
+        strcat(str, n);
 
-	// int quadrantes = lines1 * coluns1;
-	// int quant_elem = lines2 * coluns2;
-	// int i, pid;
+        out = fopen(str, "w");
+        char cbarra_n = '\n';
+        
+        int fst3[lines2][coluns2];
+       
+        forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, fst3, filho);
+        
+        // for (int a = 0; a < lines1; a++) {
+		//     for (int b = 0; b < coluns2; b++)
+		// 	    fprintf(out, "%d ", fst3[a][b]);
+		//     fprintf(out, "%s", "\n");
+	    // }
 
-	// kron(lines1, coluns1, fst,
-    //      lines2, coluns2, fst2,
-    //      lines3, coluns3, fst3);
-	// printArray(lines3, coluns3, fst3);
-
-	serial(lines1, coluns1, fst,
-         lines2, coluns2, fst2,
-         lines3, coluns3, fst3);
-	printArray(lines3, coluns3, fst3);
+        fclose(out);
+    }
     return 0;
 }
 
-    

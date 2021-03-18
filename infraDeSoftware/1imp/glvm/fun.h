@@ -6,14 +6,18 @@
 	#include <time.h>
 	#include <stdlib.h>
 	#include <unistd.h>
-	#include <wait.h>
+	#include <string.h>
+	#include <sys/wait.h>
 
 	int verificar_tamanho(const char arr[]);
 	int linhas(FILE *fp);
 	int colunas(FILE *fp);
-	void kron(int lines1, int coluns1, int fst1[lines1][coluns1],
+	void serial(int lines1, int coluns1, int fst1[lines1][coluns1],
           int lines2, int coluns2, int fst2[lines2][coluns2], 
           int lines3, int coluns3,int fst3[lines3][coluns3]);
 	void printArray(int lines, int coluns, int fstx[lines][coluns]);
+	void forkeado(int lines1, int coluns1, int fst1[lines1][coluns1],
+          	  int lines2, int coluns2, int fst2[lines2][coluns2], 
+    		  int fst3[lines2][coluns2], int filho);
 	
 #endif  /*FILE_H*/
