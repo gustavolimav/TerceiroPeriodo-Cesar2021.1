@@ -81,30 +81,31 @@ void serial(int lines1, int coluns1, int fst1[lines1][coluns1],
 }
 
 void forkeado(int lines1, int coluns1, int fst1[lines1][coluns1],
-          	  int lines2, int coluns2, int fst2[lines2][coluns2], 
-    		  int fst3[lines2][coluns2], int filho)
+          	  int lines2, int coluns2, int fst2[lines2][coluns2],
+    		  int lines3, int coluns3, int fst3[lines2][coluns2],
+			  int filho)
 			  {
-	int col, row;
-	int  quant = (lines1*coluns1) % 4, quant1 = (lines1*coluns1)/4;
+	// int col, row, c, l;
+	// int  quant = (lines1*coluns1) % 4, quant1 = (lines1*coluns1)/4;
 	
-	if (filho == 1)
-		int c = 0, l = 0;
-	else if (filho == 2)
-		int c = 1, l = 0;
-	else if (filho == 3)
-		int c = 0, l = 1;
-	else
-		int c = 1, l = 1;
+	// if (filho == 1)
+	// 	c = 0, l = 0;
+	// else if (filho == 2)
+	// 	c = 1, l = 0;
+	// else if (filho == 3)
+	// 	c = 0, l = 1;
+	// else
+	// 	c = 1, l = 1;
 		
-    row = l * lines2;
-    for(int l2 = 0; l2 < lines2; l2++) {
-        col = c * coluns2;
-        for(int c2 = 0; c2 < coluns2; c2++) {
-            fst3[row][col] = fst1[l][c] * fst2[l2][c2];
-            col+=1;
-        }
-        row+=1;
-    }
+    // row = l * lines2;
+    // for(int l2 = 0; l2 < lines2; l2++) {
+    //     col = c * coluns2;
+    //     for(int c2 = 0; c2 < coluns2; c2++) {
+    //         fst3[row][col] = fst1[l][c] * fst2[l2][c2];
+    //         col+=1;
+    //     }
+    //     row+=1;
+    // }
 	
 	return;
 	
@@ -119,4 +120,34 @@ void printArray(int lines, int coluns, int fstx[lines][coluns]){
         if(i != lines - 1)
             printf("\n");
     }
+}
+
+void hello() {
+	// const int SIZE = 4096;
+	// const char *name = "OS";
+	// const char *message_0 = "Hello";
+	// const char *message_1 = "World!";
+	// int shm_fd;
+	// void *ptr;
+
+	// shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+	// ftruncate(shm_fd, SIZE);
+	// ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+	// sprintf(ptr,"%s",message_0);
+	// ptr += strlen(message_0);
+	// sprintf(ptr,"%s",message_1);
+	// ptr += strlen(message_1);
+	// return;
+}
+
+void consumer() {
+	// const int SIZE = 4096;
+	// const char *name = "OS";
+	// int shm_fd;
+	// void *ptr;
+	// shm_fd = shm_open(name, O_RDONLY, 0666);
+	// ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
+	// printf("%s",(char *)ptr);
+	// shm_unlink(name);
+	// return;
 }

@@ -56,64 +56,47 @@ int main(int argc, char const *argv[])
 				fscanf(fp, "%d", &fst2[a][b]);
 		}
 	}
-    // char n[10] = "um";
-    // int pid = fork();
-    // int filho = 1;
-	
-    
-    // if (pid != 0) {
-    //     strcpy(n, "dois");
-    //     pid = fork();
-    //     filho = 2;
-    // }
-    // if (pid != 0) {
-    //     strcpy(n, "tres");
-    //     pid = fork();
-    //     filho = 3;
-    // }
-    // if (pid != 0) {
-    //     strcpy(n, "quatro");
-    //     pid = fork();
-    //     filho = 4;
-    // }
 
-    // if (pid == 0) {
-    //     char str[10] = "test";
-    //     strcat(str, n);
-
-        // out = fopen(str, "w");
-        // char cbarra_n = '\n';
-        
-        // int fst3[lines2][coluns2];
-       
-        // forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, fst3, filho);
-        
-        // for (int a = 0; a < lines1; a++) {
-		//     for (int b = 0; b < coluns2; b++)
-		// 	    fprintf(out, "%d ", fst3[a][b]);
-		//     fprintf(out, "%s", "\n");
-	    // }
-
-        // fclose(out);
-    // }
 	int pid = 1;
 	int n = 0;
+	int lines3 = lines1 * lines2;
+	int coluns3 = coluns1 * coluns2;
+	int fst3[lines3][coluns3];
 
-	for(int k=0;k<4;k++){
-		if (pid != 0)
+	// um filho por vez
+	for (int k = 0; k < 4; k++) {
+		if (pid != 0) {
 			n+=1;
-			printf("%d\n", n);
 			pid = fork();
-		if(pid == 0) {
-			out = fopen("ts", "w");
-        	char cbarra_n = '\n';
+		}
+		if (pid == 0) {
+			out = fopen("test", "w");
 
-			forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, fst3, n);
+			if (n == 1) {
+				for(int i = 0; i < lines1; i++) {
+					for (int j = 0; j < coluns1; j++) { // fazer 1/4 do programa em cada filho passando por esse for as posições certas
+						serial(lines1, coluns1, fst,
+								lines2, coluns2, fst2,
+								lines3, coluns3, fst3);
+					}
+				}
+				printArray(lines3, coluns3, fst3);
+			}
 
+			// forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, lines3, coluns3, fst3, n);
+
+			for (int a = 0; a < lines1; a++) {
+				for (int b = 0; b < coluns2; b++)
+					fprintf(out, "%d ", fst3[a][b]);
+				fprintf(out, "%s", "\n");
+			}
+
+			fclose(out);
 			exit(0);
 		}
 		wait(NULL);	
 	}
+
     return 0;
 }
 
