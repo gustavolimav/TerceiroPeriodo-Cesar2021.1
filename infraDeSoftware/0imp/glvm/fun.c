@@ -24,13 +24,13 @@ int linhas(FILE *fp)
 		if (text[i] == '\n')
 			liness++;
 	}
-	return liness + 1;
+	return liness;
 }
 
 int colunas(FILE *fp)
 {
 	char text[90000];
-	int colunas = 0, i, saver = 0, tamanho;
+	int colunas = 0, i, tamanho, saver = 0;
 
 	fread(&text, sizeof(char), 90000, fp);
 
@@ -40,13 +40,11 @@ int colunas(FILE *fp)
 		return 1;
 
 	for (i = 0; i < tamanho; i++) {
-		if (text[i] == '\n') {
-			if (saver == 0)
+    if (text[i] == '\n') {
+			if(saver == 0)
 				saver = colunas;
-
 			if (saver != colunas)
 				return -1;
-
 			colunas = 0;
 			continue;
 		}
@@ -54,9 +52,7 @@ int colunas(FILE *fp)
 		    text[i + 1] == '\0')
 			colunas++;
 	}
-	if (colunas != saver)
-		return -1;
-	return colunas;
+	return saver;
 }
 
 int multiplicar_matrizes(int lines1, int coluns1,

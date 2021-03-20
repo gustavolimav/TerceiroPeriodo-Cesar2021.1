@@ -25,7 +25,11 @@
           	  int lines2, int coluns2, int fst2[lines2][coluns2],
     		  int lines3, int coluns3, int fst3[lines2][coluns2],
 			  int filho);
-	void consumer();
-	void hello();
+	void write_fork(int lines1, int coluns1, int fst1[lines1][coluns1],
+          	  int lines2, int coluns2, int fst2[lines2][coluns2],
+    		      int lines3, int coluns3, int fst3[lines2][coluns2],
+			        int filho, char *ptr);
+	void consumer(const char *name, const int SIZE, void *ptr);
+	void scan_matrix(FILE *fp, int lines, int coluns, int fst[lines][coluns]);
 	
 #endif  /*FILE_H*/
