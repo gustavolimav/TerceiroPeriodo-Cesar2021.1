@@ -1,6 +1,5 @@
 #include "fun.h"
 
-
 int main(int argc, char const *argv[])
 {   
     int lines1, coluns1, lines2, coluns2;
@@ -64,39 +63,19 @@ int main(int argc, char const *argv[])
 	int fst3[lines3][coluns3];
 
 	// um filho por vez
-	for (int k = 0; k < 4; k++) {
-		if (pid != 0) {
-			n+=1;
-			pid = fork();
-		}
-		if (pid == 0) {
-			out = fopen("test", "w");
-
-			if (n == 1) {
-				for(int i = 0; i < lines1; i++) {
-					for (int j = 0; j < coluns1; j++) { // fazer 1/4 do programa em cada filho passando por esse for as posições certas
-						serial(lines1, coluns1, fst,
-								lines2, coluns2, fst2,
-								lines3, coluns3, fst3);
-					}
-				}
-				printArray(lines3, coluns3, fst3);
-			}
-
-			// forkeado(lines1, coluns2, fst, lines2, coluns2, fst2, lines3, coluns3, fst3, n);
-
-			for (int a = 0; a < lines1; a++) {
-				for (int b = 0; b < coluns2; b++)
-					fprintf(out, "%d ", fst3[a][b]);
-				fprintf(out, "%s", "\n");
-			}
-
-			fclose(out);
-			exit(0);
-		}
-		wait(NULL);	
-	}
-
+	// for (int k = 0; k < 4; k++) {
+	// 	if (pid != 0) {
+	// 		n+=1;
+	// 		pid = fork();
+	// 	}
+	// 	if (pid == 0) {
+	// 		forkeado(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst3, n);
+	// 		exit(0);
+	// 	}
+	// 	wait(NULL);	
+	// }
+	// printArray();
+	printf("%d %d %d %d", lines1, coluns1, lines2, coluns2);
     return 0;
 }
 
