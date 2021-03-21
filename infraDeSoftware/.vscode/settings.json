@@ -4,6 +4,7 @@
         "shm.h": "c",
         "stdio.h": "c",
         "stdlib.h": "c",
-        "stat.h": "c"
+        "stat.h": "c",
+        "string.h": "c"
     }
 }

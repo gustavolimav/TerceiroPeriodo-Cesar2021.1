@@ -17,20 +17,21 @@ int linhas(FILE *fp)
 	int liness = 0, i, tamanho;
 
 	fread(&text, sizeof(char), 90000, fp);
-
+  
 	tamanho = verificar_tamanho(text);
 
 	for (i = 0; i < tamanho; i++) {
 		if (text[i] == '\n')
 			liness++;
 	}
+  printf("lines %d \n", liness);
 	return liness;
 }
 
-int colunas(FILE *fp)
+int colunas(FILE *fp, int lines)
 {
 	char text[90000];
-	int colunas = 0, i, tamanho, saver = 0;
+	int colunas = 0, i, tamanho, saver = 0, n = 0;
 
 	fread(&text, sizeof(char), 90000, fp);
 
@@ -41,8 +42,12 @@ int colunas(FILE *fp)
 
 	for (i = 0; i < tamanho; i++) {
     if (text[i] == '\n') {
+      n++;
 			if(saver == 0)
 				saver = colunas;
+      printf("saver: %d coluns: %d n: %d\n", saver, colunas, n);
+      if (n == lines)
+        break;
 			if (saver != colunas)
 				return -1;
 			colunas = 0;
@@ -52,6 +57,7 @@ int colunas(FILE *fp)
 		    text[i + 1] == '\0')
 			colunas++;
 	}
+  printf("coluns %d \n", saver);
 	return saver;
 }
 
@@ -80,7 +86,7 @@ void serial(int lines1, int coluns1, int fst1[lines1][coluns1],
 
 void forkeado(int lines1, int coluns1, int fst1[lines1][coluns1],
           	  int lines2, int coluns2, int fst2[lines2][coluns2],
-    		      int lines3, int coluns3, int fst3[lines2][coluns2],
+    		      int lines3, int coluns3, char fst3[lines3][coluns3],
 			        int filho)
 {
 	int n = 0, flag = 0;
