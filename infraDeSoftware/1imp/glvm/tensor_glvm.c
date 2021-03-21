@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	}
 	lines1 = linhas(fp);
 	fseek(fp, 0, SEEK_SET);
-	coluns1 = colunas(fp);
+	coluns1 = colunas(fp, lines1);
 	fseek(fp, 0, SEEK_SET);
 
 	if (coluns1 == -1) {
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	}
 	lines2 = linhas(fp);
 	fseek(fp, 0, SEEK_SET);
-	coluns2 = colunas(fp);
+	coluns2 = colunas(fp, lines2);
 	fseek(fp, 0, SEEK_SET);
 
 	if (coluns2 == -1) {
@@ -65,11 +65,6 @@ int main(int argc, char *argv[])
 	// int quadrantes = lines1 * coluns1;
 	// int quant_elem = lines2 * coluns2;
 	// int i, pid;
-
-	// kron(lines1, coluns1, fst,
-    //      lines2, coluns2, fst2,
-    //      lines3, coluns3, fst3);
-	// printArray(lines3, coluns3, fst3);
 
 	serial(lines1, coluns1, fst,
          lines2, coluns2, fst2,

@@ -23,8 +23,7 @@ int linhas(FILE *fp)
 	for (i = 0; i < tamanho; i++) {
 		if (text[i] == '\n')
 			liness++;
-	}
-  printf("lines %d \n", liness);
+  }
 	return liness;
 }
 
@@ -41,24 +40,17 @@ int colunas(FILE *fp, int lines)
 		return 1;
 
 	for (i = 0; i < tamanho; i++) {
-    if (text[i] == '\n') {
-      n++;
-			if(saver == 0)
-				saver = colunas;
-      printf("saver: %d coluns: %d n: %d\n", saver, colunas, n);
-      if (n == lines)
-        break;
-			if (saver != colunas)
-				return -1;
-			colunas = 0;
-			continue;
-		}
-		if (text[i + 1] == ' ' || text[i + 1] == '\n' ||
-		    text[i + 1] == '\0')
+		if (text[i + 1] == ' ' || text[i + 1] == '\0')
 			colunas++;
-	}
-  printf("coluns %d \n", saver);
-	return saver;
+    else if (text[i + 1] == '\n') {
+      colunas++;
+      return colunas;
+    }
+    else {
+      continue;
+    }
+  }
+	return colunas;
 }
 
 
