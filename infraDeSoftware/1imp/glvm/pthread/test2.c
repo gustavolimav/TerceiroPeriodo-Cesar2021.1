@@ -1,149 +1,80 @@
-#include <stdio.h>
-
 #include <stdlib.h>
-
-#include <math.h>
-
+#include <stdio.h>
 #include <pthread.h>
+#include <string.h>
 
-#define MAX_THRDS 4 //numero de processadores
+typedef struct {
+    int col;
+    int row;
+    int id;
+    int fst4[row][col];
+}thread_arg, *ptr_thread_arg;
 
-#define max 1000 //tam. max. arquivo
+pthread_t threads[4];
 
-int a[max][max], b[max][max], c[max][max];
+void printArray(int lines, int coluns, int fstx[lines][coluns]){
 
-int n,nprocs;
-
-void readdata()
-
-{
-
-    int i,j;
-
-    FILE *fpa,*fpb;
-
-    /* read matrix a */
-
-    fpa = fopen("a","r");
-
-    for (i=0; i < n; i++)
-
-        for (j=0; j < n; j++)
-
-        fscanf(fpa,"%f", &a[j]);
-
-    fclose(fpa);
-
-    /* read matrix b */
-
-    fpb = fopen("b","r");
-
-    for (i=0; i < n; i++)
-
-        for (j=0; j < n; j++)
-
-        fscanf(fpb,"%f", &b[j]);
-
-    fclose(fpb);
-
+    for(int i = 0; i < lines; i++) {
+        printf("%d ", fstx[i][0]);
+        for(int j = 1; j < coluns; j++)
+            printf("%d ", fstx[i][j]);
+        if(i != lines - 1)
+            printf("\n");
+    }
 }
 
-void printdata()
+void *thread_func(void *arg) {
+    ptr_thread_arg targ = (ptr_thread_arg)arg;
+    int i;
 
-{
-
-    int i,j;
-
-    FILE *fpc;
-
-    /* write results */
-
-    fpc = fopen("thread_c","w");
-
-    for (i=0; i < n; i++)
-
-        for (j = 0; j < n; j++)
-
-        fprintf(fpc,"%f\n",c[j]);
-
-    fclose(fpc);
-
-}
-
-void matmul(int *num_thread) //funcao que multiplica..threads a chamam.
-
-{
-
-    int i, j, k;
-
-    int iprocs, jprocs;
-
-    int my_id, i_id,j_id,ilb,iub,jlb,jub;
-
-    /* number of processors in i direction */
-
-    iprocs = (int) sqrt((double) nprocs);
-
-    /* number of processors in j direction */
-
-    printf("n:%d\n", *num_thread);
-    pthread_exit (NULL);
-
+    int fst[2][5] = {2,2,2,2,2,2,2,2,2,2};
+    int fst2[5][2] = {1,1,1,1,1,1,1,1,1,1};
+    int fst4[10][10];
+    int lines3 = targ->row, lines1 = 2, lines2 = 5, coluns2 = 2, coluns1 = 5;
+	int col, row, flag = 0, n = 0;
+	int total = 4 * 4;
+    
+	for(int l = 0; l < lines1; l++) { //0
+        for(int c = 0; c < coluns1; c++) { //0
+            row = l * lines2;
+            for(int l2 = 0; l2 < lines2; l2++) {
+                col = c * coluns2;
+                for(int c2 = 0; c2 < coluns2; c2++) {
+                    if (targ->id == 1 && (row < lines3/4)) { //fork(1)
+                        fst4[row][col] = fst[l][c] * fst2[l2][c2];;
+                        flag = 1;
+                    }
+                    else if (targ->id == 2 && (row >= lines3/4 + lines3%4)  && (row < lines3/4 * 2)) { //fork(2)
+                        fst4[row][col] = fst[l][c] * fst2[l2][c2];
+                        flag = 1;
+                    }
+                    else if (targ->id == 3 && (row >= lines3/4 * 2) && (row < lines3/4 * 3)) {
+                        fst4[row][col] = fst[l][c] * fst2[l2][c2]; //fork(3)
+                        flag = 1;
+                    }
+                    else if (targ->id == 4 && (row >= lines3/4 * 3) && (row < lines3)) {
+                        fst4[row][col] = fst[l][c] * fst2[l2][c2]; //fork(4)
+                        flag = 1;
+                    }
+                    col++;
+                    n++;
+                }
+                row++;
+        }
+    }
+  }
 }
 
 int main(int argc, char **argv) {
-
-    pthread_t t[MAX_THRDS];
-
-    pthread_attr_t attr;
-
-    int param;
-
+    thread_arg arguments[4];
     int i;
-
-    void readdata(),matmul(),printdata();
-
-    //inicializacao das threads
-
-    pthread_attr_init(&attr);
-
-    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-
-    pthread_attr_setscope(&attr,PTHREAD_SCOPE_SYSTEM);
-
-    /* get n and nprocs parameters */
-
-    if (argc != 3) {
-        printf("usage: pth_matrix <size of matrices> <number of processors>\n");
-
-        exit(1);
+    
+    for(i = 0; i < 4; i++) {
+        arguments[i].row = 10;
+        arguments[i].col = 10;
+        arguments[i].id = i + 1;
+        pthread_create(&(threads[i]), NULL, thread_func,
+        &(arguments[i]));
+        pthread_join(threads[i], NULL);
     }
-
-    n = atoi(argv[1]);
-
-    nprocs = atoi(argv[2]);
-
-    /* reads matrix a and b */
-
-    readdata();
-
-    /* create threads */
-
-    for (i=0; i < nprocs; i++) {
-        param=i;
-
-        pthread_create(&t, &attr, (void *)matmul, &param);
-    }
-
-    /* wait termination of created threads */
-
-    for (i=0; i < nprocs; i++)
-        pthread_join(t, NULL);
-
-    /* outputs matrix c */
-
-    printdata();
-
-    return (0);
-
 }

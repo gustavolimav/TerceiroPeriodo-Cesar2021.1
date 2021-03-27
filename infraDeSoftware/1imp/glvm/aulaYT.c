@@ -68,6 +68,8 @@ int main(int argc, char const *argv[]) {
 	int f = 4;
 	fst4 = (char(*)[coluns3])mmap(0, total,  PROT_WRITE,   MAP_SHARED,  shm_fd, 0);
 
+	// memset( fst4, 0, lines3*coluns3*sizeof(int) );
+
 	for (int k = 0; k < 4; k++) {
 		if (pid != 0) {
 			filho += 1;
