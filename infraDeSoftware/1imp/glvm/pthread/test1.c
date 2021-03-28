@@ -1,53 +1,62 @@
-#include <pthread.h>
+#include <pthread h>
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/shm.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
+#include <wait.h>
 
-pthread_t threads[4];
-int sum; /* esses dados são compartilhados pelo(s) thread(s) */
-void *runner(void* param); /* os threads chamam essa função */
+typedef struct matrix {
+    int rows;
+    int cols;
+    int **data;
+} matrix, *matrix_ptr;
 
-int main(int argc, char *argv[])
-{
-    pthread_t tid; /* o identificador do thread */
-    pthread_attr_t attr; /* conjunto de atributos do thread */
-    FILE *fp;
-    char texto_str[4000];
+void *maxthread(void *arg) {   
+    matrix_ptr m = (matrix_ptr)arg;
 
-    pthread_attr_init(&attr);
-    for (int i = 0; i < 4; i++) {
-        pthread_create(&tid,&attr,runner, argv[1]);
+    for (int i = 0; i < m->rows; i++) {
+
+        for (int j = 0; j < m->cols; j++) {
+            m->data[i][j] = i * j;
+        }
     }
-    for (int j = 0; j < 4; j++)
-        pthread_join(tid,NULL);
-    printf("sum = %d\n",sum);
+
+    for (int i = 0; i < m->rows; i++) {
+        for (int j = 0; j < m->cols; j++) {
+            printf("%d\n", m->data[i][j]);
+        }
+
+        printf("\n");
+    }
+
+    printf("\n");
+    return NULL;
 }
-/* O thread assumirá o controle nessa função */
-void *runner(void *param) {
-    FILE *fp, *fp2, *fp3;
 
-    fp = fopen("m1.txt", "w");
-    fp2 = fopen("m2.txt", "w");
-    fp3 = fopen("m3.txt", "w");
+int main() {   
+    int num_threads = 3; // or take user input
+    pthread_t threads[num_threads];
+    matrix m[3];
+    m->rows = 11;         // or take user input
+    m->cols = 8;
+    m->data = malloc(sizeof(int *) * m->rows);
+    
 
-    printf("%d\n", pthread_self());
+    for (int i = 0; i < num_threads; i++) {
+        pthread_t thread;
+        m->data[i] = malloc(sizeof(int) * m->cols);
+        pthread_create(&thread, NULL, maxthread, &(m[i]));
+        threads[i] = thread;
+        sleep(1);
+    }
 
-    for (int a = 0; a < 2; a++) {
-		for (int b = 0; b < 2; b++)
-			fprintf(fp3, "%d ", 1);
-		fprintf(fp3, "%s", "\n");
-	}
+    for (int i = 0; i < num_threads; i++) {
+        pthread_join(threads[i], NULL);
+    }
 
-    fclose(fp3);
-    fclose(fp);
-    fclose(fp2);
-    pthread_exit(0);
+    for (int i = 0; i < m->rows; i++) {
+        free(m->data[i]);
+    }
+
+    free(m->data);
+    return 0;
 }

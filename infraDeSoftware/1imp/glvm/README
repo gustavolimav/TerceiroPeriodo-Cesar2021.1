@@ -1,18 +1,23 @@
-# Produto Matricial
+# Produto Serial
 
-## Programa para multiplicar duas matrizes de tamanho indefinido
-## introduzidos pelo usuário em dois arquivos distintos.
+## Programa para multiplicar de maneira serial duas matrizes
+## tamanho indefinido introduzidos pelo usuário em dois
+## arquivos distintos.
 
 SOBRE
 
+* Regras para arquivos das matrix
+    1. Importante que os arquivos contenham apenas inteiros e que exista uma linha em branco no final do arquivo.
+    2. Apos o ultimo elemento deve existir uma quebra de linha sem nenhum espaco em branco.
+
 * Conteúdos:
-         fun.c, fun.h, makefile and mult_glvm.c.
+         fun.c, fun.h, makefile and tensor_glvm.c.
 
 * Como usar:  
-         1. Crie ou coloque dois arquivos que contenham matrizes na pasta
-         2. Utilize o comando "make".
-         3. Utilize o comando "./mult [file1] [file2]" com o nome dos dois arquivos que você criou
-         4. Caso não as matrizes sejam válidas, abra o arquivo "mult_glvm.out" para ver o resultado.
+         1. Crie ou coloque dois arquivos que contenham matrizes na pasta.
+         2. Utilize o comando "make" para compilar o programa.
+         3. Utilize o comando "./tensor [file1] [file2]" com o nome dos dois arquivos que você deseja utilizar.
+         4. Caso as matrizes sejam válidas, abra o arquivo "mult_glvm.out" para ver o resultado.
          5. Limpe todos os arquivos criados com "make cleanAll" ou todos menos o "mult_glvm.out" com o comando "make clean".
 
    * Pre Requisitos: 
@@ -22,19 +27,19 @@ SOBRE
          C e Makefile.
 
 fun.c:
-    Arquivo com as funções que o "mult_glvm.c" utilizará.
+    Arquivo com as funções que o "tensor_glvm.c" utilizará.
 
 fun.h:
-    Arquivo que faz a ligação entre o "fun.c" e o "mult_glvm.c" inicializando as funções
+    Arquivo que faz a ligação entre o "fun.c" e o "tensor_glvm.c" inicializando as funções
     e incluindo as bibliotecas que serão utilizadas.
 
 Makefile:
     Arquivo que compila o programa utilizando o comando "make" e limpa utilizando "make clean" ou o "make cleanAll".
 
-mult_glvm.c:
-    Arquivo principal que executa o Poduto Matricial.
+tensor_glvm.c:
+    Arquivo principal que executa o Poduto Serial.
 
-mult_glvm.out:
+tensor_glvm.out:
     Arquivo que será gerado se as matrizes estiverem corretas e puderem ser multiplicadas.
-    O Conteúdo desse arquivo vai ser o output do programa "mult_glvm.c".
+    O Conteúdo desse arquivo vai ser o output do programa "tensor_glvm.c".
 
