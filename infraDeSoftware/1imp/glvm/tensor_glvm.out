@@ -1,15 +1,55 @@
 1. serial
-6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-Tempo de execução:  4.031000ms
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+Tempo de execução:  3.669000ms
 2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
-6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 6 6 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+1. serial
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+Tempo de execução:  3.669000ms
+2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+1. serial
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+Tempo de execução:  3.669000ms
+2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+1. serial
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+Tempo de execução:  3.669000ms
+2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+1. serial
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
+Tempo de execução:  3.669000ms
+2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
+1 2 1 2 
+3 4 3 4 
+1 2 1 2 
+3 4 3 4 
