@@ -3,7 +3,7 @@
 3 4 3 4 
 1 2 1 2 
 3 4 3 4 
-Tempo de execução:  3.669000ms
+Tempo de execução:  3.471000ms
 2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
 1 2 1 2 
 3 4 3 4 
@@ -14,7 +14,7 @@ Tempo de execução:  3.669000ms
 3 4 3 4 
 1 2 1 2 
 3 4 3 4 
-Tempo de execução:  3.669000ms
+Tempo de execução:  3.471000ms
 2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
 1 2 1 2 
 3 4 3 4 
@@ -25,7 +25,7 @@ Tempo de execução:  3.669000ms
 3 4 3 4 
 1 2 1 2 
 3 4 3 4 
-Tempo de execução:  3.669000ms
+Tempo de execução:  3.471000ms
 2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
 1 2 1 2 
 3 4 3 4 
@@ -36,7 +36,7 @@ Tempo de execução:  3.669000ms
 3 4 3 4 
 1 2 1 2 
 3 4 3 4 
-Tempo de execução:  3.669000ms
+Tempo de execução:  3.471000ms
 2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
 1 2 1 2 
 3 4 3 4 
@@ -47,7 +47,7 @@ Tempo de execução:  3.669000ms
 3 4 3 4 
 1 2 1 2 
 3 4 3 4 
-Tempo de execução:  3.669000ms
+Tempo de execução:  3.471000ms
 2. via múltiplos processos, criados a partir do comando fork(), e utilizando o compartilhamento de memória
 1 2 1 2 
 3 4 3 4 

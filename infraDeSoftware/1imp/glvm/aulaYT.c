@@ -147,98 +147,65 @@ int main(int argc, char *argv[])
 	int fd4[2];
 
 	filho = 1;
-	pipe(fd1);
-	pid = fork();
-	if (pid == 0) {
-		close(fd1[0]);
-		
-		forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
-		
-		write(fd1[1], fst5,total*sizeof(int));
-		printf("1- %d %d %d %d\n", fst5[0][0],fst5[0][1],fst5[1][0],fst5[1][1]);
-		close(fd1[1]);
+	pipe (fd1);
 
-	}
-	pipe(fd2);
-	if (pid != 0) {
-		filho = 2;
-		pid = fork();
-	}
-	if (pid == 0 && filho == 2) {
-		close(fd1[1]);
-		close(fd2[0]);
+    pid = fork();
 
-		read(fd1[0], fst5, total*sizeof(int));
+    if (pid == 0) {
+        close(fd1[0]);
+        forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
+        write (fd1[1], fst5, total*sizeof(int));
+        close(fd1[1]);
+    }
+    pipe(fd2);
+    if (pid != 0) {
+        pid = fork();
+        if (pid == 0) {
+            close(fd2[0]);
+            close(fd1[1]);
+            read(fd1[0], fst5, sizeof(int)*total);
+            forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
+            write (fd2[1], fst5, total*sizeof(int));
+            close(fd2[1]);
+            close(fd1[0]);
+        }
+    }
+    pipe(fd3);
+    if (pid != 0) {
+        pid = fork();
+        if (pid == 0) {
+            close(fd3[0]);
+            close(fd2[1]);
+            read(fd2[0], fst5, sizeof(int)*total);
+			forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
+            write (fd3[1], fst5, total*sizeof(int));
+            close(fd3[1]);
+            close(fd2[0]);
+        }
+    }
+    pipe(fd4);
+    if (pid != 0) {
+        pid = fork();
+        if (pid == 0) {
+            close(fd4[0]);
+            close(fd3[1]);
+            read(fd3[0], fst5, sizeof(int)*total);
+			forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
+            write (fd4[1], fst5, total*sizeof(int));
+            close(fd4[1]);
+            close(fd3[0]);
+        }
+    }
+    
+    if (pid != 0) {
+        close(fd4[1]);
 
-		forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
-		
-		write (fd2[1], fst5, total*sizeof(int));
-		printf("2- %d %d %d %d\n", fst5[0][2],fst5[0][3],fst5[1][2],fst5[1][3]);
-		
-		close(fd1[0]);
-		close(fd2[1]);
+        read(fd4[0], fst5, sizeof(int)*total);
 
-	}
-	pipe(fd3);
-	if (pid != 0) {
-		filho = 3;
-		pid = fork();
-	}
-	if (pid == 0 && filho == 3) {
-		close(fd1[1]); close(fd1[0]);
-		close(fd2[1]);
-		close(fd3[0]);
-		
-		read(fd2[0], fst5, total*sizeof(int));
-		printf("3- %d %d %d %d\n", fst5[2][0],fst5[2][1],fst5[3][0],fst5[3][1]);
+		printArray(lines3, coluns3, fst5);
 
-		forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
-		
-		write (fd3[1], fst5, total*sizeof(int));
-		
-		close(fd2[0]);
-		close(fd3[1]);
-		
-	}
-	pipe(fd4);
-	if (pid != 0) {
-		filho = 4;
-		pid = fork();
-	}
-	if (pid == 0  && filho == 4) {
-		close(fd1[1]); close(fd1[0]);
-		close(fd2[1]); close(fd2[0]);
-		close(fd3[1]);
-		close(fd4[0]);
-
-		read(fd3[0], fst5, total*sizeof(int));
-
-		printf("4- %d %d %d %d\n", fst5[2][2],fst5[2][3],fst5[3][2],fst5[3][3]);
-
-		forkeado2(lines1, coluns1, fst, lines2, coluns2, fst2, lines3, coluns3, fst5, filho);
-		
-		write (fd4[1], fst5, total*sizeof(int));
-		
-		close(fd3[0]);
-		close(fd4[1]);
-		
-	}
-	if (pid != 0) {
-		close(fd1[1]); close(fd1[0]);
-		close(fd2[1]); close(fd2[0]);
-		close(fd3[1]); close(fd3[0]);
-		close(fd4[1]);
-		int arr[10];
-
-		read(fd4[0], fst5, sizeof(int)*4);
-		close(fd4[0]);
-		
-		for(int i = 0; i < lines3; i++) {
-			for(int j = 0; j < coluns3; j++)
-				printf("%d ", fst5[i][j]);
-			printf("\n");
-    	}
-	}
+        close(fd4[0]);
+    }
 	exit(0);
 
 	// quarta questao
