@@ -1,8 +1,15 @@
 # Produto Serial
 
 ## Programa para multiplicar de maneira serial duas matrizes
-## tamanho indefinido introduzidos pelo usuário em dois
-## arquivos distintos.
+## de tamanho indefinido e introduzidos pelo usuário em dois
+## arquivos distintos. O output do programa apresenta as
+## quatro formas a seguir de multiplicacao das matrizes e seu
+## respectivo tempo de execucao.
+
+1. serial;
+2. via múltiplos processos, criados a partir do comando fork(),e utilizando o compartilhamento de memória;
+3. via múltiplos processos, criados a partir do comando fork(), e utilizando pipes;
+4. via múltiplas threads, criadas a partir da biblioteca Pthreads do POSIX.
 
 SOBRE
 
@@ -17,7 +24,7 @@ SOBRE
          1. Crie ou coloque dois arquivos que contenham matrizes na pasta.
          2. Utilize o comando "make" para compilar o programa.
          3. Utilize o comando "./tensor [file1] [file2]" com o nome dos dois arquivos que você deseja utilizar.
-         4. Caso as matrizes sejam válidas, abra o arquivo "mult_glvm.out" para ver o resultado.
+         4. Caso as matrizes sejam válidas, abra o arquivo "mult_glvm.out" recebe o resultado.
          5. Limpe todos os arquivos criados com "make cleanAll" ou todos menos o "mult_glvm.out" com o comando "make clean".
 
    * Pre Requisitos: 
@@ -37,7 +44,7 @@ Makefile:
     Arquivo que compila o programa utilizando o comando "make" e limpa utilizando "make clean" ou o "make cleanAll".
 
 tensor_glvm.c:
-    Arquivo principal que executa o Poduto Serial.
+    Arquivo principal que executa o Poduto Serial de quatro maneiras diferentes.
 
 tensor_glvm.out:
     Arquivo que será gerado se as matrizes estiverem corretas e puderem ser multiplicadas.

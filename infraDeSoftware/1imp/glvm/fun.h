@@ -18,18 +18,18 @@
 	int linhas(FILE *fp);
 	int colunas(FILE *fp, int lines);
 	void serial(int lines1, int coluns1, int fst1[lines1][coluns1],
-          int lines2, int coluns2, int fst2[lines2][coluns2], 
-          int lines3, int coluns3,int fst3[lines3][coluns3]);
-	void printArray(int lines, int coluns, int fstx[lines][coluns]);
+		    int lines2, int coluns2, int fst2[lines2][coluns2],
+		    int lines3, int coluns3, int fst3[lines3][coluns3]);
 	void forkeado(int lines1, int coluns1, int fst1[lines1][coluns1],
-          	  int lines2, int coluns2, int fst2[lines2][coluns2],
-    		  int lines3, int coluns3, char fst3[lines3][coluns3],
+		      int lines2, int coluns2, int fst2[lines2][coluns2],
+			  int lines3, int coluns3, char fst3[lines3][coluns3],
 			  int filho);
-	void scan_matrix(FILE *fp, int lines, int coluns, int fst[lines][coluns]);
+	void scan_matrix(FILE *fp, int lines, int coluns,
+			 int fst[lines][coluns]);
 	int verify(FILE *fp, int coluns, int lines);
 	void forkeado2(int lines1, int coluns1, int fst1[lines1][coluns1],
-          	  int lines2, int coluns2, int fst2[lines2][coluns2],
-    		      int lines3, int coluns3, int fst3[lines3][coluns3],
-			        int filho);
-	
+		       int lines2, int coluns2, int fst2[lines2][coluns2],
+			   int lines3, int coluns3, int fst3[lines3][coluns3],
+			   int filho);
+
 #endif  /*FILE_H*/

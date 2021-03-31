@@ -1,9 +1,9 @@
 CC = gcc
-objects = aulaYT.o fun.o
-#objects = tensor_glvm.o fun.o
+#objects = aulaYT.o fun.o
+objects = tensor_glvm.o fun.o
 out = tensor_glvm.out
 mult: $(objects)
-	$(CC) -o tensor $(objects) -lrt
+	$(CC) -o tensor $(objects) -lrt -pthread
 
 callback.o: fun.h
 
