@@ -5,7 +5,7 @@ out = tensor_glvm.out
 mult: $(objects)
 	$(CC) -o tensor $(objects) -lrt -pthread
 
-callback.o: fun.h
+tensor_glvm.o: fun.h
 
 fun.o:
 

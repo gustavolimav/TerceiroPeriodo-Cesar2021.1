@@ -3,8 +3,8 @@
 ## Programa para multiplicar de maneira serial duas matrizes
 ## de tamanho indefinido e introduzidos pelo usuário em dois
 ## arquivos distintos. O output do programa apresenta as
-## quatro formas a seguir de multiplicacao das matrizes e seu
-## respectivo tempo de execucao.
+## quatro formas a seguir de multiplicação das matrizes e seu
+## respectivo tempo de execução.
 
 1. serial;
 2. via múltiplos processos, criados a partir do comando fork(),e utilizando o compartilhamento de memória;
@@ -15,7 +15,7 @@ SOBRE
 
 * Regras para arquivos das matrix
     1. Importante que os arquivos contenham apenas inteiros e que exista uma linha em branco no final do arquivo.
-    2. Apos o ultimo elemento deve existir uma quebra de linha sem nenhum espaco em branco.
+    2. Após o último elemento deve existir uma quebra de linha sem nenhum espaço em branco.
 
 * Conteúdos:
          fun.c, fun.h, makefile and tensor_glvm.c.
@@ -24,7 +24,7 @@ SOBRE
          1. Crie ou coloque dois arquivos que contenham matrizes na pasta.
          2. Utilize o comando "make" para compilar o programa.
          3. Utilize o comando "./tensor [file1] [file2]" com o nome dos dois arquivos que você deseja utilizar.
-         4. Caso as matrizes sejam válidas, abra o arquivo "mult_glvm.out" recebe o resultado.
+         4. Caso as matrizes sejam válidas, abra o arquivo "mult_glvm.out" e receba o resultado.
          5. Limpe todos os arquivos criados com "make cleanAll" ou todos menos o "mult_glvm.out" com o comando "make clean".
 
    * Pre Requisitos: 
@@ -48,5 +48,5 @@ tensor_glvm.c:
 
 tensor_glvm.out:
     Arquivo que será gerado se as matrizes estiverem corretas e puderem ser multiplicadas.
-    O Conteúdo desse arquivo vai ser o output do programa "tensor_glvm.c".
+    O conteúdo desse arquivo vai ser o output do programa "tensor_glvm.c".
 
