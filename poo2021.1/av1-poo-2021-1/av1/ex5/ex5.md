@@ -1,0 +1,3 @@
+# Questao 5
+Escreva uma classe Cliente de acordo com o diagrama diagrama.png. Além da classe, escreva uma subclasse de Exception chamada ClienteException que deve ser lançada quando valores inválidos forem fornecidos para os atributos do cliente nos Setters (ex.: Renda negativa, idade negativa)
+Atente para as convenções de codificação do Java, lembre também de especificar um pacote para as classes. 
