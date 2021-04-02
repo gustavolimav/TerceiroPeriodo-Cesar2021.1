@@ -1,3 +1,5 @@
+package school.cesar.cliente;
+
 public class Cliente {
     private String cpf;
     private double renda;
