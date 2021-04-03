@@ -13,6 +13,7 @@
 	#include <sys/shm.h>
 	#include <sys/stat.h>
 	#include <sys/mman.h>
+	#include <pthread.h>
 
 	int verificar_tamanho(const char arr[]);
 	int linhas(FILE *fp);

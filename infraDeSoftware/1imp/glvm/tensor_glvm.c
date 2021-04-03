@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 	// inicializando algumas variaveis
 	int lines1, coluns1, lines2, coluns2;
 	FILE *fp, *fp2, *out;
-	clock_t time, time2, time3;
+	clock_t time, time2, time3, time4;
 
 	// leitura de arquivos de entrada
 	fp = fopen(argv[1], "r");
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	int fst[lines1][coluns1];
 
 	// salvando na matrix
+
 	scan_matrix(fp, lines1, coluns1, fst);
 
 	fclose(fp);
@@ -222,10 +223,16 @@ int main(int argc, char *argv[])
 	wait(NULL);
 
 	time3 = clock();
-	time3 = time3 - time2 - time;
+	time3 = time3;
+
+	// quarta questão
+
 	// escrevendo primeira questao no arquivo
 
 	out = fopen("tensor_glvm.out", "w");
+	if (out == NULL) {
+   		printf("ERRO! O arquivo não foi aberto!\n");
+	}
 
 	fprintf(out, "1. serial\n");
 
@@ -256,24 +263,19 @@ int main(int argc, char *argv[])
 
 	// escrevendo terceira questao no arquivo
 
-	if (pid != 0) {
-		close(fd4[1]);
+	read(fd4[0], fst5, sizeof(int) * total);
 
-		read(fd4[0], fst5, sizeof(int) * total);
+	fprintf(out, "3. via múltiplos processos, criados a ");
+	fprintf(out, "partir do comando fork(), e utilizando pipes;\n");
 
-		fprintf(out, "3. via múltiplos processos, criados a ");
-		fprintf(out, "partir do comando fork(), e utilizando pipes;\n");
-
-		for (int i = 0; i < lines3; i++) {
-			for (int j = 0; j < coluns3; j++)
-				fprintf(out, "%d ", fst5[i][j]);
-			fprintf(out, "\n");
-		}
-
-		fprintf(out, "%s %lf%s", "Tempo de execução: "
-		, ((double)time3) / ((CLOCKS_PER_SEC / 1000)), "ms\n\n");
-		close(fd4[0]);
+	for (int i = 0; i < lines3; i++) {
+		for (int j = 0; j < coluns3; j++)
+			fprintf(out, "%d ", fst5[i][j]);
+		fprintf(out, "\n");
 	}
+
+	fprintf(out, "%s %lf%s", "Tempo de execução: "
+	, ((double)time3) / ((CLOCKS_PER_SEC / 1000)), "ms\n\n");
 
 	// quarta questao
 
