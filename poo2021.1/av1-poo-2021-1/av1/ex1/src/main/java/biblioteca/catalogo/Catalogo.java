@@ -7,6 +7,8 @@ import biblioteca.autor.Autor;
 public class Catalogo() {
     private  ArrayList<Livro> Livros = new ArrayList<>();
 
-    public void setLivro(String titulo, double isbn, ArrayList<Autor> autor, ArrayList<String> tag) {
+    public void setLivro(String titulo) {
+        Livros.add(titulo);
     }
+
 }

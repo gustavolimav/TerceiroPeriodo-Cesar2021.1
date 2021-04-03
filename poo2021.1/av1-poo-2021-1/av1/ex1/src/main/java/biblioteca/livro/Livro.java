@@ -2,12 +2,14 @@ package biblioteca.livro;
 
 import biblioteca.autor.Autor;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Livro() {
     private String titulo;
     private ArrayList<Autor> autores = new ArrayList<>();
-    private ArrayList<String> tags = new ArrayList<>();
+    private Set<String> tags = new HashSet<String>();
     private double isbn;
 
     public String getTitulo() {
@@ -27,14 +29,8 @@ public class Livro() {
         this.isbn = novoIsbn;
     }
 
-    public void setAutor(String nome, String cpf, String obra) {
-        Autor novo = new Autor();
-
-        novo.setNome(nome);
-        novo.setCpf(cpf);
-        novo.setObra(obra);
-        
-        this.autores.add(novo);
+    public void setAutor(String nome) {
+        autores.add(nome);
     }
 
     public String getAutores(int id) {
@@ -42,16 +38,16 @@ public class Livro() {
     }
 
     public void setTag(String nome) {
-        for (String tag : tags) {
-            if (nome == tag) {
-                break
-            }
-        }
         this.tags.add(nome);
     }
 
-    public String getTag(int id) {
-        return tags.get(id);
+    public String getTag() {
+        Iterator<String> tagIterator = tags.iterator();
+        while (tags.hasNext()) {
+            String it = tagIterator.next();
+            System.out.println(it + " ");
+        }
+        
     }
 
 }

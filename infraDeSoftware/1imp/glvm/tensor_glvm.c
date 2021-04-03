@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
 		close(fd1[1]);
 	}
 
-	pipe(fd2);
+	pipe(fd2); // inicaliza pipe
 
 	filho = 2;
 
@@ -161,12 +161,13 @@ int main(int argc, char *argv[])
 			close(fd2[0]);
 
 			close(fd1[1]);
-
+			// lê o primeiro pipe e armazena na variável
 			read(fd1[0], fst5, sizeof(int) * total);
 
 			forkeado2(lines1, coluns1, fst, lines2, coluns2,
 				  fst2, lines3, coluns3, fst5, filho);
-
+			// escreve as informações do segundo filho
+			// e armazena no segundo pipe
 			write(fd2[1], fst5, total * sizeof(int));
 
 			close(fd2[1]);
