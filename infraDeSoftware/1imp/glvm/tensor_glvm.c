@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
 	int lines3 = lines1 * lines2;
 	int coluns3 = coluns1  * coluns2;
 
+	printf("primeira questão\n");
 	//primeira questao
 
 	clock();
@@ -82,6 +83,7 @@ int main(int argc, char *argv[])
 
 	fclose(fp2);
 
+	printf("segunda questão\n");
 	// segunda questao
 
 	clock();
@@ -90,13 +92,13 @@ int main(int argc, char *argv[])
 	const char *name = "Matrix_fst3";
 	int shm_fd;
 	int total = lines3 * coluns3;
-	char (*fst4)[coluns3];
+	int (*fst4)[coluns3];
 
 	shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
 
 	ftruncate(shm_fd, total);
 
-	fst4 = (char(*)[coluns3])mmap(0, total, PROT_WRITE,
+	fst4 = (int(*)[coluns3])mmap(0, total, PROT_WRITE,
 			MAP_SHARED, shm_fd, 0);
 
 	filho = 1;
@@ -128,6 +130,8 @@ int main(int argc, char *argv[])
 
 	// terceira questao
 
+	printf("terceira questão\n");
+
 	clock();
 
 	int fst5[lines3][coluns3];
@@ -144,8 +148,8 @@ int main(int argc, char *argv[])
 	if (pid == 0) {
 		close(fd1[0]);
 
-		forkeado2(lines1, coluns1, fst, lines2, coluns2,
-			  fst2, lines3, coluns3, fst5, filho);
+		forkeado(lines1, coluns1, fst, lines2, coluns2,
+			 fst2, lines3, coluns3, fst5, filho);
 
 		write(fd1[1], fst5, total * sizeof(int));
 
@@ -165,8 +169,8 @@ int main(int argc, char *argv[])
 			// lê o primeiro pipe e armazena na variável
 			read(fd1[0], fst5, sizeof(int) * total);
 
-			forkeado2(lines1, coluns1, fst, lines2, coluns2,
-				  fst2, lines3, coluns3, fst5, filho);
+			forkeado(lines1, coluns1, fst, lines2, coluns2,
+				 fst2, lines3, coluns3, fst5, filho);
 			// escreve as informações do segundo filho
 			// e armazena no segundo pipe
 			write(fd2[1], fst5, total * sizeof(int));
@@ -188,8 +192,8 @@ int main(int argc, char *argv[])
 
 			read(fd2[0], fst5, sizeof(int) * total);
 
-			forkeado2(lines1, coluns1, fst, lines2, coluns2,
-				  fst2, lines3, coluns3, fst5, filho);
+			forkeado(lines1, coluns1, fst, lines2, coluns2,
+				 fst2, lines3, coluns3, fst5, filho);
 
 			write(fd3[1], fst5, total * sizeof(int));
 
@@ -210,8 +214,8 @@ int main(int argc, char *argv[])
 
 			read(fd3[0], fst5, sizeof(int) * total);
 
-			forkeado2(lines1, coluns1, fst, lines2, coluns2,
-				  fst2, lines3, coluns3, fst5, filho);
+			forkeado(lines1, coluns1, fst, lines2, coluns2,
+				 fst2, lines3, coluns3, fst5, filho);
 
 			write(fd4[1], fst5, total * sizeof(int));
 
@@ -230,9 +234,9 @@ int main(int argc, char *argv[])
 	// escrevendo primeira questao no arquivo
 
 	out = fopen("tensor_glvm.out", "w");
-	if (out == NULL) {
-   		printf("ERRO! O arquivo não foi aberto!\n");
-	}
+
+	if (!out)
+		printf("ERRO! O arquivo não foi aberto!\n");
 
 	fprintf(out, "1. serial\n");
 
