@@ -52,3 +52,4 @@ tensor_glvm.out:
 Pasta matrizesTest: 
     Arquivos com matrizes para teste.
 
+Implementado em um WSL Linux.
