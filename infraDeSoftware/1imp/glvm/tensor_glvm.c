@@ -6,14 +6,13 @@ int main(int argc, char *argv[])
 	// inicializando algumas variaveis
 	int lines1, coluns1, lines2, coluns2;
 	FILE *fp, *fp2, *out;
-	clock_t time, time2, time3, time4;
+	clock_t time, time2, time3, timeaux;
 
 	// leitura de arquivos de entrada
 	fp = fopen(argv[1], "r");
 
 	if (!fp) {
 		printf("Error: First file does not exist\n");
-		fclose(fp);
 		return 1;
 	}
 
@@ -42,8 +41,6 @@ int main(int argc, char *argv[])
 
 	if (!fp2) {
 		printf("Error: Second file does not exist\n");
-		fclose(fp);
-		fclose(fp2);
 		return 1;
 	}
 
@@ -68,10 +65,9 @@ int main(int argc, char *argv[])
 	int lines3 = lines1 * lines2;
 	int coluns3 = coluns1  * coluns2;
 
-	printf("primeira questão\n");
 	//primeira questao
 
-	clock();
+	timeaux = clock();
 
 	int fst3[lines3][coluns3];
 
@@ -80,25 +76,25 @@ int main(int argc, char *argv[])
 	       lines3, coluns3, fst3);
 
 	time = clock();
+	time = time - timeaux;
 
 	fclose(fp2);
 
-	printf("segunda questão\n");
 	// segunda questao
 
-	clock();
+	timeaux = clock();
 
 	int pid, filho = 0;
 	const char *name = "Matrix_fst3";
 	int shm_fd;
 	int total = lines3 * coluns3;
-	int (*fst4)[coluns3];
+	char (*fst4)[coluns3];
 
 	shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
 
 	ftruncate(shm_fd, total);
 
-	fst4 = (int(*)[coluns3])mmap(0, total, PROT_WRITE,
+	fst4 = (char(*)[coluns3])mmap(0, total, PROT_WRITE,
 			MAP_SHARED, shm_fd, 0);
 
 	filho = 1;
@@ -118,21 +114,19 @@ int main(int argc, char *argv[])
 		pid = fork();
 	}
 	if (pid == 0) {
-		forkeado(lines1, coluns1, fst, lines2, coluns2,
-			 fst2, lines3, coluns3, fst4, filho);
+		forkeado2(lines1, coluns1, fst, lines2, coluns2,
+			  fst2, lines3, coluns3, fst4, filho);
 		exit(0);
 	}
 
 	wait(NULL);
 
 	time2 = clock();
-	time2 = time2 - time;
+	time2 = time2 - timeaux;
 
 	// terceira questao
 
-	printf("terceira questão\n");
-
-	clock();
+	timeaux = clock();
 
 	int fst5[lines3][coluns3];
 	int fd1[2];
@@ -154,6 +148,7 @@ int main(int argc, char *argv[])
 		write(fd1[1], fst5, total * sizeof(int));
 
 		close(fd1[1]);
+		exit(0);
 	}
 
 	pipe(fd2); // inicaliza pipe
@@ -177,6 +172,7 @@ int main(int argc, char *argv[])
 
 			close(fd2[1]);
 			close(fd1[0]);
+			exit(0);
 		}
 	}
 
@@ -199,6 +195,7 @@ int main(int argc, char *argv[])
 
 			close(fd3[1]);
 			close(fd2[0]);
+			exit(0);
 		}
 	}
 
@@ -221,13 +218,14 @@ int main(int argc, char *argv[])
 
 			close(fd4[1]);
 			close(fd3[0]);
+			exit(0);
 		}
 	}
 
 	wait(NULL);
 
 	time3 = clock();
-	time3 = time3;
+	time3 = time3 - timeaux;
 
 	// quarta questão
 

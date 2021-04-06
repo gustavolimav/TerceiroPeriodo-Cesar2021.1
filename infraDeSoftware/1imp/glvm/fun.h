@@ -28,5 +28,9 @@
 		      int lines2, int coluns2, int fst2[lines2][coluns2],
 			  int lines3, int coluns3, int fst3[lines3][coluns3],
 			  int filho);
+	void forkeado2(int lines1, int coluns1, int fst1[lines1][coluns1],
+		       int lines2, int coluns2, int fst2[lines2][coluns2],
+			   int lines3, int coluns3, char fst3[lines3][coluns3],
+			   int filho);
 
 #endif  /*FILE_H*/

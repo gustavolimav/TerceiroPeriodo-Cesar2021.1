@@ -3,13 +3,12 @@
 ## Programa para multiplicar de maneira serial duas matrizes
 ## de tamanho indefinido e introduzidos pelo usuário em dois
 ## arquivos distintos. O output do programa apresenta as
-## quatro formas a seguir de multiplicação das matrizes e seu
+## três formas a seguir de multiplicação das matrizes e seu
 ## respectivo tempo de execução.
 
 1. serial;
 2. via múltiplos processos, criados a partir do comando fork(),e utilizando o compartilhamento de memória;
 3. via múltiplos processos, criados a partir do comando fork(), e utilizando pipes;
-4. via múltiplas threads, criadas a partir da biblioteca Pthreads do POSIX.
 
 SOBRE
 
@@ -49,4 +48,7 @@ tensor_glvm.c:
 tensor_glvm.out:
     Arquivo que será gerado se as matrizes estiverem corretas e puderem ser multiplicadas.
     O conteúdo desse arquivo vai ser o output do programa "tensor_glvm.c".
+
+Pasta matrizesTest: 
+    Arquivos com matrizes para teste.
 
