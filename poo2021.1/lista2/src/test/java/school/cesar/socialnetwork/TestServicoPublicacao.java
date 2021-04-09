@@ -1,8 +1,8 @@
 package school.cesar.socialnetwork;
+
 import static org.hamcrest.MatcherAssert.assertThat; 
 import static org.hamcrest.Matchers.*;
 import org.junit.Test;
-import school.cesar.socialnetwork.*;
 
 public class TestServicoPublicacao {
     @Test

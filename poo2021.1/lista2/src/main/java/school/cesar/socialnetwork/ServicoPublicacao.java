@@ -12,13 +12,13 @@ public class ServicoPublicacao {
     public void publicar(Publicacao publicacao) {
         Usuario autor = publicacao.getAutor();
         // List<Publicacao> publicacaosUsuario = publicacao.getOrDefault(autor, new ArrayList<>());
-        List<Publicacao> publicacaosUsuario = publicacao.get(autor);
+        List<Publicacao> publicacaosUsuario = publicacaos.get(autor);
         if (publicacaosUsuario != null) {
             publicacaosUsuario.add(publicacao);
         } else {
             publicacaosUsuario = new ArrayList<>();
             publicacaosUsuario.add(publicacao);
-            publicacao.put(autor, publicacaosUsuario);
+            publicacaos.put(autor, publicacaosUsuario); 
         }
 
     }
