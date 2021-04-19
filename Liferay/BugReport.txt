@@ -1,0 +1,41 @@
+**BUG_REPORT**
+
+(i) *Description*
+
+	If change the Field Reference of a Row or Column by Grid and of
+	a option by "Single Selection and Multiple Selection" 
+
+(on) *Pre-conditions*
+ # Go to Content & Data > Forms;
+ # Add a Form;
+
+(on) *Steps to Reproduce*
+# Go to Global Menu > Control Panel > App Builder > Objects > Add a Custom Object;
+ # Add a Form View;
+ # Add a Table View;
+ # Deploy an app using the Form View and Table View;
+
+(/) *Expected Result*
+
+(x) *Actual Result*
+
+(?) *Reproduced In*
+master: 275058a5906bcdc9a083795b9c98c2c7860a1995
+
+
+**Regression_tests**
+
+*Test Result: {color:#14892c}PASSED{color}* Manual Testing following the steps in the description.
+*Verified on master:* 275058a5906bcdc9a083795b9c98c2c7860a1995
+*Actual Result:* 
+*Attached Evidence:* ActualResult-Aug2-LPS109443.mp4
+*Test Result: {color:#d04437}FAILED{color}* Manual Testing following the steps in the description.
+*Verified on master:* 275058a5906bcdc9a083795b9c98c2c7860a1995
+*Actual Result:* 
+*Attached Evidence:* ActualResult-Aug2-LPSXXXX.mp4
+
+
+
+http://192.168.109.41/ (Link Servidor)
+
+
