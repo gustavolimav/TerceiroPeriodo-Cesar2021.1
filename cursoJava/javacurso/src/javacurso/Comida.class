@@ -1,0 +1,4 @@
+public class Comida {
+    public String nome;
+    public double peso;
+}

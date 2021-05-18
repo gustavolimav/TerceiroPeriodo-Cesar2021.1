@@ -1,0 +1,15 @@
+public class Jantar {
+    public static void main(String[] args) {
+        Comida a = new Comida();
+
+        a.nome = "Macarrao";
+        a.peso = 0.34;
+
+        Pessoa joao = new Pessoa();
+
+        joao.nome = "cleiton";
+        joao.peso = 77;
+
+        joao.comer(a.peso);
+    }
+}
